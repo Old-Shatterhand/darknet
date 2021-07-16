@@ -18,7 +18,7 @@ opencv/
 convnet/
 decaf/
 submission/
-cfg/
+# cfg/
 temp/
 build/darknet/*
 build_*/
@@ -27,7 +27,7 @@ ninja.zip
 vcpkg_installed/
 !build/darknet/YoloWrapper.cs
 .fuse*
-*.weights
+# *.weights
 build/*.cmake
 build/*.ninja
 build/*.txt
