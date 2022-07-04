@@ -383,7 +383,8 @@ void train_detector(char *datacfg, char *cfgfile, char *weightfile, int *gpus, i
         //if (i % 1000 == 0 || (i < 1000 && i % 100 == 0)) {
         //if (i % 100 == 0) {
         if ((iteration >= (iter_save + 10000) || iteration % 10000 == 0) ||
-            (iteration >= (iter_save + 1000) || iteration % 1000 == 0) && net.max_batches < 10000)
+            // (iteration >= (iter_save + 1000) || iteration % 1000 == 0) && net.max_batches < 10000)
+            (iteration >= (iter_save + 1000) || iteration % 1000 == 0))
         {
             iter_save = iteration;
 #ifdef GPU
@@ -482,7 +483,8 @@ static void print_cocos(FILE *fp, char *image_path, detection *dets, int num_box
         for (j = 0; j < classes; ++j) {
             if (dets[i].prob[j] > 0) {
                 char buff[1024];
-                sprintf(buff, "{\"image_id\":%d, \"category_id\":%d, \"bbox\":[%f, %f, %f, %f], \"score\":%f},\n", image_id, coco_ids[j], bx, by, bw, bh, dets[i].prob[j]);
+                // sprintf(buff, "{\"image_id\":%d, \"category_id\":%d, \"bbox\":[%f, %f, %f, %f], \"score\":%f},\n", image_id, coco_ids[j], bx, by, bw, bh, dets[i].prob[j]);
+                sprintf(buff, "{\"image_id\":\"%s\", \"category_id\":%d, \"bbox\":[%f, %f, %f, %f], \"score\":%f},\n", image_path, coco_ids[j], bx, by, bw, bh, dets[i].prob[j]);
                 fprintf(fp, buff);
                 //printf("%s", buff);
             }
